@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Covide-19 Live data using API, Angularjs and Bootstrap - Amit Mendapara </title>
+    
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Bootstrap JS CDN -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <!-- Angular CDN URL-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.32/angular.min.js"></script>
+    
+    <!-- Custom JS-->
+    <script src="js/MainScript.js"></script>
+</head>
+<body ng-app="Myapp" ng-controller="MyCtrl">
+    <div class="container">
+        <div class="jumbotron text-center">
+           
+            <h2>{{title | uppercase}}</h2>
+            <h4>{{SubTitle}}</h4>
+            <h5>{{all_data.lastUpdate  | date: shortDate}}</h5>
+
+            <p class="pt-3" >Developed single page website using Angularjs,bootstrap-4. Call data from thired party API from "https://covid19.mathdro.id/api"  </p>
+            <!-- All Data-->
+            <div class="row text-center">
+                <div class="col-md-4">
+                    <div class="card bg-warning text-white">
+                        <div class="card-body">
+                            <h3>Confirm Cases</h3>
+                            <h3>{{all_data.confirmed.value | number : fractionSize}}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card bg-success text-white">
+                        <div class="card-body">
+                            <h3>Recovered Cases</h3>
+                            <h3>{{all_data.recovered.value | number : fractionSize}}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                <div class="card bg-danger text-white">
+                    <div class="card-body">
+                        <h3>Death Cases</h3>
+                        <h3>{{all_data.deaths.value | number : fractionSize}}</h3>
+                        
+                    </div>
+                </div>
+            </div>
+            </div>
+            <!-- End All Data-->
+            
+            <input type="text" class="form-control mt-4" placeholder="Enter Country here" ng-model="c" ng-change="get_c_data()" >
+            
+            <div class="container-fluid" ng-If="c_data">
+                <h1 class="text-center text-uppercase mt-4">{{c}} Status</h1>
+                <!-- Country Data -->
+                <div class="row text-center mt-4" >
+                    <div class="col-md-4">
+                        <div class="card bg-warning text-white">
+                            <div class="card-body">
+                                <h3>Confirm Cases</h3>
+                                <h3>{{c_data.confirmed.value | number : fractionSize}}</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card bg-success text-white">
+                            <div class="card-body">
+                                <h3>Recovered Cases</h3>
+                                <h3>{{c_data.recovered.value | number : fractionSize}}</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                    <div class="card bg-danger text-white">
+                        <div class="card-body">
+                            <h3>Death Cases</h3>
+                            <h3>{{c_data.deaths.value | number : fractionSize}}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Country Data -->
+        </div>
+       
+    </div>
+
+</body>
+</html>
